@@ -1,5 +1,5 @@
 import platform
-from os import system
+from os import system, path
 from colorama import Fore
 
 R = Fore.RED
@@ -56,6 +56,17 @@ def opener_unix():
     1. FIREFOX
     2. EXIT
     """)
-    selector = int(input("--> "+ M))
+    try:
+        selector = int(input("--> "+ M))
 
+        if selector == 1 and path.exists("/usr/bin/firefox" or "/snap/bin/firefox" or "/bin/firefox"):
+            system('firefox &')
+        elif selector == 2:
+            print(D)
+            print("bye")
+            exit
+    except ValueError:
+        print(R + "the string format doenst enabled")
+        print(D)
+            
 os_type()
